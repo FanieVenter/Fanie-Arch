@@ -46,4 +46,7 @@ cd slstatus
 sudo make clean install
 cd ~
 #clone and install bash theme
-git clone
+git clone https://github.com/FanieVenter/bash
+cd bash
+./setup-arch.sh
+cd ~
