@@ -15,10 +15,9 @@ sudo sed -i 's/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASS
 sudo pacman -Sy --noconfirm --needed
 gpu_type=$(lspci)
 if grep -E "NVIDIA|GeForce" <<< ${gpu_type}; then
-    sudo pacman -S --noconfirm --needed nvidia
-	nvidia-xconfig
+    sudo pacman -S --noconfirm --needed nvidia-dkms nvidia-xconfig nvidia-settings
 elif lspci | grep 'VGA' | grep -E "Radeon|AMD"; then
-    sudo pacman -S --noconfirm --needed xf86-video-amdgpu
+    sudo pacman -S --noconfirm --needed xf86-video-amdgpu  vulkan-radeon lib32-vulkan-radeon 
 elif grep -E "Integrated Graphics Controller" <<< ${gpu_type}; then
     sudo pacman -S --noconfirm --needed libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
 elif grep -E "Intel Corporation UHD" <<< ${gpu_type}; then
