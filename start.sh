@@ -25,15 +25,16 @@ elif grep -E "Intel Corporation UHD" <<< ${gpu_type}; then
     sudo pacman -S --needed --noconfirm libva-intel-driver libvdpau-va-gl lib32-vulkan-intel vulkan-intel libva-intel-driver libva-utils lib32-mesa
 fi
 
-git clone "https://aur.archlinux.org/yay.git"
-cd ~/yay
-makepkg -si --noconfirm
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
 cd ~
 # sed $INSTALL_TYPE is using install type to check for MINIMAL installation, if it's true, stop
 # stop the script and move on, not installing any more packages below that line
 
 
-yay -S --noconfirm --needed ~/Fanie-Arch/aur-apps.txt
+paru -S --noconfirm --needed ~/Fanie-Arch/aur-apps.txt
 sudo pacman -S --noconfirm --needed ~/Fanie-Arch/pacman-apps.txt
 #clone and install dwm
 git clone https://github.com/FanieVenter/dwm
